@@ -6,6 +6,13 @@ public class ColorThreshold implements PixelFilter, Clickable {
     private static short TARGET_GREEN = 0;
     private static short TARGET_BLUE = 0;
 
+    public ColorThreshold(int threshold, short red, short green, short blue){
+        TARGET_RED = red;
+        TARGET_GREEN = green;
+        TARGET_BLUE = blue;
+        THRESHOLD = threshold;
+    }
+
     @Override
     public DImage processImage(DImage img) {
         short[][] red = img.getRedChannel();
@@ -16,6 +23,11 @@ public class ColorThreshold implements PixelFilter, Clickable {
             for (int c = 0; c < red[r].length; c++) {
                 double dist = getColorDist(TARGET_RED, TARGET_GREEN, TARGET_BLUE, red[r][c], green[r][c], blue[r][c]);
                 if (dist > THRESHOLD) {
+                    red[r][c] = 255;
+                    green[r][c] = 255;
+                    blue[r][c] = 255;
+
+                }else{
                     red[r][c] = 0;
                     green[r][c] = 0;
                     blue[r][c] = 0;

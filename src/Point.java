@@ -35,4 +35,5 @@ public class Point {
     public double getDistanceTo(Point center) {
         return Math.sqrt(this.getSquaredDistanceTo(center));
     }
+
 }

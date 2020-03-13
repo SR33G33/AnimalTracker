@@ -138,7 +138,7 @@ public class Main extends PApplet {
         }
         fill(0);
         textSize(10);
-        text(mousePositionString() + " " + colorString, 10, height - 20);
+        text(mousePositionString() + " " + colorString, 10, 30);
 
         stroke(200);
         strokeWeight(1);
@@ -250,10 +250,9 @@ public class Main extends PApplet {
     }
 
     private PixelFilter loadNewFilter() {
-        String name = JOptionPane.showInputDialog("Type the name of your processImage class");
         PixelFilter f = null;
         try {
-            Class c = Class.forName(name);
+            Class c = Class.forName("MouseTracker");
             f = (PixelFilter) c.newInstance();
         } catch (Exception e) {
             System.err.println("Something went wrong when instantiating your class!  (running its constructor). " +
@@ -266,6 +265,7 @@ public class Main extends PApplet {
 
     public static void main(String[] args) {
         PApplet.main("Main", args);
+
     }
 }
 
